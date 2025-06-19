@@ -98,9 +98,15 @@ function Sparkle() {
   );
 }
 
-// PUBLIC_INTERFACE
+/* 
+  PUBLIC_INTERFACE
+  This App component now supports both the user's name and their crush's name inputs.
+  Both fields are playful, stylish, responsive, and appear together in the main form. 
+  The generated vibe message can reference both names, if entries provided.
+*/
 function App() {
   const [name, setName] = useState("");
+  const [crush, setCrush] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [loveMessage, setLoveMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -112,7 +118,26 @@ function App() {
     playSound(popSound);
     setLoading(true);
     setTimeout(() => {
-      setLoveMessage(getRandomMessage());
+      // Optionally personalize result (if both names given) -- otherwise fallback
+      let result;
+      if (crush.trim()) {
+        // Playful message using both names
+        const templates = [
+          `Sparks between ${name.trim()} & ${crush.trim()}? This thing is LIT 🔥!`,
+          `${name.trim()} + ${crush.trim()} = 💘 Major Crush Vibes Detected!`,
+          `Someone tell ${crush.trim()} they're living in ${name.trim()}'s mind rent-free. 🥰`,
+          `If ${crush.trim()} doesn't vibe with you, they're clearly missing out!`,
+        ];
+        // Mix with a random classic message too for true randomness:
+        result =
+          Math.random() < 0.6
+            ? templates[Math.floor(Math.random() * templates.length)]
+            : getRandomMessage();
+      } else {
+        // No crush, go classic line
+        result = getRandomMessage();
+      }
+      setLoveMessage(result);
       setShowResult(true);
       setLoading(false);
       playSound(dingSound);
@@ -132,6 +157,7 @@ function App() {
   function reset() {
     setShowResult(false);
     setName("");
+    setCrush("");
     setLoveMessage("");
     playSound(popSound);
   }
@@ -163,7 +189,7 @@ function App() {
               Find your LoveVibe!
             </h1>
             <div className="description">
-              Enter your name for a personalized, sassy love verdict and some Gen-Z-worthy flirtation.
+              Enter your name and (optionally) your crush's name for a sassy love verdict and some Gen-Z-worthy flirtation.
             </div>
 
             {!showResult ? (
@@ -174,18 +200,43 @@ function App() {
                   handleClick();
                 }}
                 autoComplete="off"
+                style={{ width: "100%" }}
               >
-                <input
-                  className="name-input"
-                  placeholder="Your Name"
-                  maxLength={14}
-                  value={name}
-                  autoFocus
-                  onChange={e => setName(e.target.value)}
-                  disabled={loading}
-                  aria-label="Enter your name"
-                  required
-                />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "10px",
+                    width: "100%",
+                    flexWrap: "wrap",
+                    alignItems: "flex-end",
+                  }}
+                >
+                  <div style={{ flex: "1 1 150px", minWidth: "120px" }}>
+                    <input
+                      className="name-input"
+                      placeholder="Your Name"
+                      maxLength={14}
+                      value={name}
+                      autoFocus
+                      onChange={e => setName(e.target.value)}
+                      disabled={loading}
+                      aria-label="Enter your name"
+                      required
+                    />
+                  </div>
+                  <div style={{ flex: "1 1 150px", minWidth: "120px" }}>
+                    <input
+                      className="name-input"
+                      placeholder="Crush's Name"
+                      maxLength={14}
+                      value={crush}
+                      onChange={e => setCrush(e.target.value)}
+                      disabled={loading}
+                      aria-label="Enter your crush's name"
+                    />
+                  </div>
+                </div>
                 <button
                   type="submit"
                   className={
@@ -193,6 +244,7 @@ function App() {
                     (loading || !name.trim() ? " btn-disabled" : "")
                   }
                   disabled={loading || !name.trim()}
+                  style={{ marginTop: "3px", width: "100%" }}
                 >
                   <Sparkle />
                   {loading ? "Vibing..." : "Get My Love Vibe"}
@@ -205,7 +257,19 @@ function App() {
                 aria-live="polite"
                 tabIndex={0}
               >
-                <div className="your-name">{name.trim()},</div>
+                <div className="your-name">
+                  {name.trim()}
+                  {crush.trim() ? (
+                    <>
+                      {" "}
+                      <span style={{ color: "#b83274", fontWeight: 400 }}>
+                        &amp; {crush.trim()}
+                      </span>,
+                    </>
+                  ) : (
+                    "," // classic, just user!
+                  )}
+                </div>
                 <div className="love-message">{loveMessage}</div>
                 <button
                   className="btn btn-large sparkle-btn try-again-btn"
