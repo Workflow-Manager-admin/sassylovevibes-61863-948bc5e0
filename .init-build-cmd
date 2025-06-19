@@ -1,0 +1,4 @@
+{
+    "command": "npm install && npx tsc --noEmit && npm test -- --ci",
+    "working_directory": "/home/kavia/workspace/code-generation/sassylovevibes-61863-948bc5e0/sassy_love_vibes_frontend"
+}
