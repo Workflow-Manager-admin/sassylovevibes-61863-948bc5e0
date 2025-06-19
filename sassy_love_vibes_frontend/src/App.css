@@ -31,6 +31,91 @@ body {
   z-index: 1;
 }
 
+/* Main Layout: Two Column (Left: features, Center: Love Chamber) */
+.app-content-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 44px;
+  justify-content: center;
+  margin-top: 99px;
+  width: 100%;
+}
+
+/* LEFT COLUMN STYLES */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  min-width: 310px;
+  max-width: 340px;
+  width: 100%;
+  align-items: stretch;
+  flex: 0 0 330px;
+}
+
+.left-column-box {
+  background: linear-gradient(105deg, #ffe4e1ee 65%, #e0bbe4cc 100%);
+  border: 2.3px solid #ffe4e188;
+  border-radius: 28px;
+  box-shadow: 0 6px 26px 0 #ffd1dc30, 0 2.5px 11px #e0bbe422;
+  margin: 0 0;
+  padding: 19px 12px 17px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0px;
+  /* dreamy subtle background and border */
+  transition: box-shadow 0.14s, border-color 0.17s;
+  animation: fadeUp 0.7s cubic-bezier(.6,1.4,.5,0.9) .11s backwards;
+}
+
+.moodboard-box {
+  background: linear-gradient(115deg, #e0bbe470 10%, #ffd1dcaa 95%);
+  border: 2.7px solid #ffd1dcd7;
+  min-height: 117px;
+  padding: 14px 12px 13px 17px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: flex-start;
+}
+
+.moodboard-title {
+  font-family: var(--font-fancy);
+  font-weight: 600;
+  font-size: 1.16rem;
+  color: #b477c0;
+  letter-spacing: 1.4px;
+  margin-bottom: 2px;
+  margin-right: 13px;
+}
+
+.moodboard-placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.98rem;
+  color: #c0a1cd;
+  margin-left: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* CENTER COLUMN STYLES */
+.center-column {
+  flex: 1 1 430px;
+  min-width: 288px;
+  max-width: 510px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+/* Overwrite the .container gap for custom layout 
+   Only applies to old .app-content-flex (now unused/new responsive in .app-content-layout) */
+
+
 .hearts-bg {
   position: fixed;
   pointer-events: none;
@@ -370,15 +455,76 @@ footer.footer {
   letter-spacing: 1px;
 }
 
+@media (max-width: 900px) {
+  .app-content-layout {
+    flex-direction: column;
+    gap: 21px;
+    align-items: stretch;
+    margin-top: 72px;
+  }
+  .left-column,
+  .center-column {
+    max-width: 100vw;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .app-content-layout {
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 71px;
+    width: 97vw;
+    padding: 0 1vw;
+  }
+  .left-column {
+    flex-direction: column;
+    gap: 19px;
+    min-width: 0;
+    max-width: 100vw;
+    width: 100%;
+  }
+  .center-column {
+    max-width: 100vw;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (max-width: 600px) {
-  .container { max-width: 100vw; padding: 0 6vw; }
-  .center-box { padding: 23px 8vw 27px 8vw; margin-top: 88px;}
+  .container { max-width: 100vw; padding: 0 3vw; }
+  .app-content-layout {
+    gap: 13px;
+    margin-top: 64px;
+    width: 100vw;
+    padding: 0 0.5vw;
+  }
+  .left-column {
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+    max-width: 100vw;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .left-column-box, .moodboard-box {
+    border-radius: 18px;
+    padding: 10px 3vw 10px 6vw;
+    margin: 0 0 0 0;
+  }
+  .center-column {
+    max-width: 100vw;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .center-box { 
+    padding: 23px 4vw 24px 4vw; 
+    margin-top: 18px;
+  }
   .main-title { font-size: 1.5rem; }
   .love-message { font-size: 1rem; }
   .name-input { font-size: 1rem; padding: 9px 9px;}
   .btn.btn-large, .btn { font-size:1rem; padding:9px 19px;}
-  .app-content-flex {
-    flex-direction: column !important;
-    gap: 15px !important;
-  }
 }

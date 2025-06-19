@@ -196,8 +196,28 @@ function App() {
         </div>
       </nav>
       <main>
-        <div className="app-content-flex container" style={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: '38px', marginTop: '18px'}}>
-          <div style={{flex: 1, minWidth: 0, maxWidth: 510, display: "flex", flexDirection: "column", gap: '24px'}}>
+        <div className="app-content-layout container">
+          {/* Left column for moodboard, zodiac, and spin-the-heart */}
+          <div className="left-column">
+            <div className="left-column-box moodboard-box">
+              {/* Placeholder - Love Moodboard (can be replaced with real content) */}
+              <div className="moodboard-title">💗 Love Moodboard</div>
+              <div className="moodboard-placeholder">
+                {/* Decorative pastel hearts or future images */}
+                <span role="img" aria-label="heart" style={{fontSize: "2rem", opacity: 0.7}}>💕</span>
+                <span role="img" aria-label="heart" style={{fontSize: "1.4rem", opacity: 0.5}}>💜🧡</span>
+                <div style={{marginTop: 5, color: "#c0a1cd", fontWeight: 500, fontSize: "0.99rem"}}>Dream up your <b>love</b> vibe!</div>
+              </div>
+            </div>
+            <div className="left-column-box">
+              <ZodiacPrediction />
+            </div>
+            <div className="left-column-box">
+              <SpinTheHeart />
+            </div>
+          </div>
+          {/* Centered main chamber */}
+          <div className="center-column">
             <div className="center-box">
               <div className="subtitle pastel">
                 Sassy. Flirty. Always a vibe. 💅
@@ -208,7 +228,6 @@ function App() {
               <div className="description">
                 Enter your name and (optionally) your crush's name for a sassy love verdict and some Gen-Z-worthy flirtation.
               </div>
-
               {!showResult ? (
                 <form
                   className="love-form"
@@ -299,12 +318,7 @@ function App() {
                 </div>
               )}
             </div>
-            {/* ZodiacPrediction below the Moodboard/Love Chamber */}
-            <ZodiacPrediction />
-            <SpinTheHeart />
           </div>
-          {/* Right side: empty or reserved for future features, spacing only on desktop */}
-          <div style={{ flex: 1, minWidth: "30px" }} />
         </div>
       </main>
       <footer className="footer">
