@@ -112,29 +112,38 @@ function App() {
   const [loading, setLoading] = useState(false);
   const audioRef = useRef();
 
-  // Handles "Get My Love Vibe" click: play sound, transition, show message
+  // Handles "Get My Love Vibe" click: play sound, transition, show personalized result
   const handleClick = () => {
     if (!name.trim()) return;
     playSound(popSound);
     setLoading(true);
     setTimeout(() => {
-      // Optionally personalize result (if both names given) -- otherwise fallback
       let result;
-      if (crush.trim()) {
-        // Playful message using both names
-        const templates = [
-          `Sparks between ${name.trim()} & ${crush.trim()}? This thing is LIT 🔥!`,
-          `${name.trim()} + ${crush.trim()} = 💘 Major Crush Vibes Detected!`,
-          `Someone tell ${crush.trim()} they're living in ${name.trim()}'s mind rent-free. 🥰`,
-          `If ${crush.trim()} doesn't vibe with you, they're clearly missing out!`,
+      // Generate a random playful 'match or not' style message referencing both names
+      if (name.trim() && crush.trim()) {
+        // Array of 'match' and playful/flirty personalized verdicts
+        const matchTemplates = [
+          `${name.trim()} & ${crush.trim()} sitting in a tree... Definitely got a vibe! 💖`,
+          `Alert: Matchmaker just called, ${name.trim()} and ${crush.trim()} are the next IT couple! ✨`,
+          `${crush.trim()}, you're on ${name.trim()}'s radar—heartthrob alert! 🚨`,
+          `Sparks between ${name.trim()} and ${crush.trim()}? This love-o-meter is sizzling! 🔥`,
+          `${name.trim()} just shot a cupid arrow at ${crush.trim()}... Did it hit? Oh yes, total match! 🏹`,
+          `The chemistry between ${name.trim()} & ${crush.trim()} is off the charts. It's a match! 😍`,
+          `Rumor has it, ${crush.trim()} dreams of ${name.trim()} too. Swipe right on destiny! 💫`,
+          `If ${crush.trim()} doesn't see it, they're missing out BIG TIME on ${name.trim()}!`,
+          `Plot twist: ${name.trim()} & ${crush.trim()} = hottest couple of the year! 🌟`,
+          `Breaking news: ${crush.trim()} can't resist ${name.trim()}'s vibe!`,
+          `Love vibes detected! ${name.trim()} <3 ${crush.trim()} – ?? Flirty points: 9.9/10!`,
+          `Someone tell ${crush.trim()} they're living in ${name.trim()}'s mind rent-free... 🥰`,
+          `If being a match was a game, ${name.trim()} & ${crush.trim()} just won!`,
+          `Cupid’s verdict: ${name.trim()} + ${crush.trim()} = a ship worth sailing! 🚢`,
+          `Wait... is that butterflies? Looks like ${name.trim()} and ${crush.trim()} are a total MATCH! 🦋`,
+          `Dear ${crush.trim()}, ${name.trim()} just matched your vibe—are you ready?`,
         ];
-        // Mix with a random classic message too for true randomness:
-        result =
-          Math.random() < 0.6
-            ? templates[Math.floor(Math.random() * templates.length)]
-            : getRandomMessage();
+        // Choose a random template
+        result = matchTemplates[Math.floor(Math.random() * matchTemplates.length)];
       } else {
-        // No crush, go classic line
+        // Fall back to a sassy/flirty message not referencing both names
         result = getRandomMessage();
       }
       setLoveMessage(result);
