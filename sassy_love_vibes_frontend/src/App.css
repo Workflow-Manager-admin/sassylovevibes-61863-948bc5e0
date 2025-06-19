@@ -377,4 +377,8 @@ footer.footer {
   .love-message { font-size: 1rem; }
   .name-input { font-size: 1rem; padding: 9px 9px;}
   .btn.btn-large, .btn { font-size:1rem; padding:9px 19px;}
+  .app-content-flex {
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
 }

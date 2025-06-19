@@ -1,0 +1,151 @@
+.zodiac-prediction-container {
+  position: relative;
+  background: linear-gradient(105deg, #fffbe4 40%, #f6eafd 100%);
+  border-radius: 30px;
+  box-shadow: 0 6px 26px 0 #ffd1dc40, 0 2.5px 12px #e0bbe470;
+  border: 1.5px solid #ffe3fc;
+  padding: 38px 19px 30px 19px;
+  margin: 32px 0 0 0;
+  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  isolation: isolate;
+}
+
+.zodiac-title {
+  font-family: 'Pacifico', cursive, 'Comic Sans MS', cursive, 'Montserrat', sans-serif;
+  font-size: 1.31rem;
+  color: #bb87e4;
+  margin-bottom: 7px;
+  margin-top: 0;
+  text-shadow: 0 2px 14px #ffe4e1cc, 0 0 12px #fff4;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.zodiac-label {
+  color: #9d49bd;
+  font-size: 1.05rem;
+  font-family: 'Montserrat', var(--font-main);
+  margin-bottom: 0px;
+  letter-spacing: .04rem;
+  font-weight: 500;
+  padding-bottom: 0;
+}
+.zodiac-dropdown {
+  appearance: none;
+  padding: 8px 31px 9px 12px;
+  border-radius: 16px;
+  font-size: 1.07rem;
+  border: 1.3px solid #ffd1dc98;
+  background: linear-gradient(96deg, #fffbe4 70%, #f6eafd 100%);
+  color: #c87dc9;
+  box-shadow: 0 2.5px 10px #ffd1dc3c;
+  font-family: inherit;
+  margin-bottom: 12px;
+  margin-top: 2px;
+  outline: none;
+  font-weight: 600;
+  transition: border-color 0.17s, box-shadow 0.18s;
+}
+.zodiac-dropdown:focus {
+  border-color: #bb87e4;
+  box-shadow: 0 0 0 5px #e0bbe450;
+}
+
+.heart-horoscope-glow {
+  position: relative;
+  width: 142px;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 137px;
+  justify-content: flex-end;
+}
+.heart-svg-bg {
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  z-index: 0;
+  filter: drop-shadow(0 0 20px #ffe7fcAA) drop-shadow(0 0 36px #f7e7fc88);
+}
+
+.horoscope-text {
+  position: relative;
+  z-index: 3;
+  color: #ba76ec;
+  font-family: 'Montserrat', var(--font-main);
+  font-size: 1.08rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 21px 11px 24px 11px;
+  width: 132px;
+  margin: 11px auto 4px auto;
+  white-space: pre-line;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  filter: none;
+  /* softly fade in */
+  animation: horoscope-glow-in 1.18s cubic-bezier(.39, 1.5, .17, .89) backwards;
+}
+
+@keyframes horoscope-glow-in {
+  0% { opacity: 0; filter: blur(7px);}
+  49% { filter: blur(5px);}
+  100% {opacity: 1; filter: blur(0);}
+}
+
+.horoscope-placeholder {
+  color: #e0bbe4;
+  opacity: 0.82;
+  font-style: italic;
+  font-weight: 500;
+}
+/* animated pastel stars & twinkles */
+.zodiac-stars-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.zodiac-star {
+  position: absolute;
+  opacity: 0.74;
+  pointer-events: none;
+  animation: starTwinkle 1.96s alternate infinite linear;
+}
+.zodiac-star.pastel-yellow {
+  filter: drop-shadow(0 0 3px #fffdd99a);
+}
+.zodiac-star.pastel-purple {
+  filter: drop-shadow(0 0 4px #c2a5fb86);
+}
+@keyframes starTwinkle {
+  0%, 100% { opacity: .65; transform: scale(.82) rotate(-3deg);}
+  24% { opacity: 1; transform: scale(1.1) rotate(7deg);}
+  39% { opacity: .93;}
+  71% { opacity: .88; }
+  80% { opacity: 1; transform: scale(1.12) rotate(-4deg);}
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 600px) {
+  .zodiac-prediction-container {
+    padding: 21px 4vw 18px 4vw;
+  }
+  .zodiac-title {
+    font-size: 1.07rem;
+  }
+  .heart-horoscope-glow {
+    width: 96vw; min-width: 112px; max-width: 97vw;
+  }
+}

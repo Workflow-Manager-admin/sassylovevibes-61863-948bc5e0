@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
+import ZodiacPrediction from "./ZodiacPrediction";
 
 // Sounds as data URIs for portability (short pop and ding)
 const popSound =
@@ -193,108 +194,114 @@ function App() {
         </div>
       </nav>
       <main>
-        <div className="container">
-          <div className="center-box">
-            <div className="subtitle pastel">
-              Sassy. Flirty. Always a vibe. 💅
-            </div>
-            <h1 className="title main-title">
-              Enter the Love Chamber!
-            </h1>
-            <div className="description">
-              Enter your name and (optionally) your crush's name for a sassy love verdict and some Gen-Z-worthy flirtation.
-            </div>
-
-            {!showResult ? (
-              <form
-                className="love-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleClick();
-                }}
-                autoComplete="off"
-                style={{ width: "100%" }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "10px",
-                    width: "100%",
-                    flexWrap: "wrap",
-                    alignItems: "flex-end",
-                  }}
-                >
-                  <div style={{ flex: "1 1 150px", minWidth: "120px" }}>
-                    <input
-                      className="name-input"
-                      placeholder="Your Name"
-                      maxLength={14}
-                      value={name}
-                      autoFocus
-                      onChange={e => setName(e.target.value)}
-                      disabled={loading}
-                      aria-label="Enter your name"
-                      required
-                    />
-                  </div>
-                  <div style={{ flex: "1 1 150px", minWidth: "120px" }}>
-                    <input
-                      className="name-input"
-                      placeholder="Crush's Name"
-                      maxLength={14}
-                      value={crush}
-                      onChange={e => setCrush(e.target.value)}
-                      disabled={loading}
-                      aria-label="Enter your crush's name"
-                    />
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  className={
-                    "btn btn-large get-vibe-btn sparkle-btn" +
-                    (loading || !name.trim() ? " btn-disabled" : "")
-                  }
-                  disabled={loading || !name.trim()}
-                  style={{ marginTop: "3px", width: "100%" }}
-                >
-                  <Sparkle />
-                  {loading ? "Vibing..." : "Get My Love Vibe"}
-                </button>
-              </form>
-            ) : (
-              <div
-                className="love-result animated-fadein"
-                role="status"
-                aria-live="polite"
-                tabIndex={0}
-              >
-                <div className="your-name">
-                  {name.trim()}
-                  {crush.trim() ? (
-                    <>
-                      {" "}
-                      <span style={{ color: "#b83274", fontWeight: 400 }}>
-                        &amp; {crush.trim()}
-                      </span>,
-                    </>
-                  ) : (
-                    "," // classic, just user!
-                  )}
-                </div>
-                <div className="love-message">{loveMessage}</div>
-                <button
-                  className="btn btn-large sparkle-btn try-again-btn"
-                  onClick={reset}
-                  aria-label="Try again"
-                >
-                  <Sparkle />
-                  Try Again
-                </button>
+        <div className="app-content-flex container" style={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: '38px', marginTop: '18px'}}>
+          <div style={{flex: 1, minWidth: 0, maxWidth: 510, display: "flex", flexDirection: "column", gap: '24px'}}>
+            <div className="center-box">
+              <div className="subtitle pastel">
+                Sassy. Flirty. Always a vibe. 💅
               </div>
-            )}
+              <h1 className="title main-title">
+                Enter the Love Chamber!
+              </h1>
+              <div className="description">
+                Enter your name and (optionally) your crush's name for a sassy love verdict and some Gen-Z-worthy flirtation.
+              </div>
+
+              {!showResult ? (
+                <form
+                  className="love-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleClick();
+                  }}
+                  autoComplete="off"
+                  style={{ width: "100%" }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "10px",
+                      width: "100%",
+                      flexWrap: "wrap",
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    <div style={{ flex: "1 1 150px", minWidth: "120px" }}>
+                      <input
+                        className="name-input"
+                        placeholder="Your Name"
+                        maxLength={14}
+                        value={name}
+                        autoFocus
+                        onChange={e => setName(e.target.value)}
+                        disabled={loading}
+                        aria-label="Enter your name"
+                        required
+                      />
+                    </div>
+                    <div style={{ flex: "1 1 150px", minWidth: "120px" }}>
+                      <input
+                        className="name-input"
+                        placeholder="Crush's Name"
+                        maxLength={14}
+                        value={crush}
+                        onChange={e => setCrush(e.target.value)}
+                        disabled={loading}
+                        aria-label="Enter your crush's name"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className={
+                      "btn btn-large get-vibe-btn sparkle-btn" +
+                      (loading || !name.trim() ? " btn-disabled" : "")
+                    }
+                    disabled={loading || !name.trim()}
+                    style={{ marginTop: "3px", width: "100%" }}
+                  >
+                    <Sparkle />
+                    {loading ? "Vibing..." : "Get My Love Vibe"}
+                  </button>
+                </form>
+              ) : (
+                <div
+                  className="love-result animated-fadein"
+                  role="status"
+                  aria-live="polite"
+                  tabIndex={0}
+                >
+                  <div className="your-name">
+                    {name.trim()}
+                    {crush.trim() ? (
+                      <>
+                        {" "}
+                        <span style={{ color: "#b83274", fontWeight: 400 }}>
+                          &amp; {crush.trim()}
+                        </span>,
+                      </>
+                    ) : (
+                      "," // classic, just user!
+                    )}
+                  </div>
+                  <div className="love-message">{loveMessage}</div>
+                  <button
+                    className="btn btn-large sparkle-btn try-again-btn"
+                    onClick={reset}
+                    aria-label="Try again"
+                  >
+                    <Sparkle />
+                    Try Again
+                  </button>
+                </div>
+              )}
+            </div>
+            {/* ZodiacPrediction below the Moodboard/Love Chamber */}
+            <ZodiacPrediction />
           </div>
+          {/* Right side: empty or reserved for future features, spacing only on desktop */}
+          <div style={{ flex: 1, minWidth: "30px" }} />
         </div>
       </main>
       <footer className="footer">
