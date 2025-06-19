@@ -83,6 +83,7 @@ body {
   border-bottom: 1.5px solid #ffe4e180;
 }
 .logo {
+  /* Keep as a base for other logos, overridden for .love-chamber-header */
   font-family: var(--font-fancy);
   font-weight: 600;
   font-size: 1.5rem;
@@ -93,9 +94,39 @@ body {
   letter-spacing: 2.5px;
 }
 
+/* NEW HEADER: Love Chamber styling */
+.love-chamber-header {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-weight: 700;
+  font-size: 2.1rem !important;
+  color: #ae158d !important;
+  letter-spacing: 3px !important;
+  text-shadow: 0 2px 11px #ffe4e166, 0 0 4px #fff6;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  margin: 4px 0 2px 0;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  gap: 0;
+}
+
+/* Remove any logo-symbol or fancy-font from the top header */
+.love-chamber-header .logo-symbol,
+.love-chamber-header.fancy-font {
+  display: none !important;
+}
+
 .logo-symbol {
   font-size: 2.1rem;
   color: #e75480;
+}
+
+/* Remove script/cursive font in case inherited elsewhere */
+.fancy-font {
+  font-family: var(--font-main) !important;
 }
 
 /* container */

@@ -177,15 +177,19 @@ function App() {
       <audio ref={audioRef} style={{ display: "none" }} />
       <nav className="navbar sassy-navbar">
         <div className="container nav-container">
-          <div className="logo fancy-font">
-            <span className="logo-symbol" role="img" aria-label="heart">
-              💖
-            </span>
-            SassyLoveVibes
+          <div
+            className="logo love-chamber-header"
+            style={{
+              fontFamily: "'Times New Roman', Times, serif",
+              fontWeight: 700,
+              fontSize: "2.1rem",
+              color: "#ae158d",
+              letterSpacing: "3px",
+              textShadow: "0 2px 11px #ffe4e166, 0 0 4px #fff6",
+            }}
+          >
+            LOVE CHAMBER
           </div>
-          <button className="btn sparkle-btn" tabIndex={-1}>
-            <Sparkle /> By KAVIA
-          </button>
         </div>
       </nav>
       <main>
@@ -195,7 +199,7 @@ function App() {
               Sassy. Flirty. Always a vibe. 💅
             </div>
             <h1 className="title main-title">
-              Find your LoveVibe!
+              Enter the Love Chamber!
             </h1>
             <div className="description">
               Enter your name and (optionally) your crush's name for a sassy love verdict and some Gen-Z-worthy flirtation.
@@ -295,7 +299,7 @@ function App() {
       </main>
       <footer className="footer">
         <div>
-          <span className="footer-tiny">&copy; 2024 SassyLoveVibes. Made with <span aria-label="hearts" role="img">💖</span>.</span>
+          <span className="footer-tiny">&copy; 2024. Made with <span aria-label="hearts" role="img">💖</span>.</span>
         </div>
       </footer>
     </div>
