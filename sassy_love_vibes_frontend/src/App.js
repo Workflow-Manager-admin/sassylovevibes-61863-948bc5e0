@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
 import ZodiacPrediction from "./ZodiacPrediction";
+import "./SpinTheHeart.css";
+import SpinTheHeart from "./SpinTheHeart";
 
 // Sounds as data URIs for portability (short pop and ding)
 const popSound =
@@ -299,6 +301,7 @@ function App() {
             </div>
             {/* ZodiacPrediction below the Moodboard/Love Chamber */}
             <ZodiacPrediction />
+            <SpinTheHeart />
           </div>
           {/* Right side: empty or reserved for future features, spacing only on desktop */}
           <div style={{ flex: 1, minWidth: "30px" }} />
